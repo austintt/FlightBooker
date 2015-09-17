@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" data-ng-app="">
+   <head>
+   <meta charset="utf-8">
+   <meta name="author" content="Austin Tooley"/>   
+   <title>Mortgage Calculator</title>
+
+   <!--AngularJS-->
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+
+    <!--stylesheets-->
+   <link href="bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+   <link rel="stylesheet" type="text/css" href="assign05.css" />
+
+   <!--Javascript-->
+   <script type="text/Javascript">
+   function computeFutureValue(principal, annualRate, years)
+   {
+      //if first input doesn't have text, re-focus on input
+       //if first input doesn't have text, re-focus on input
+      if(document.getElementById("principal").value == "")
+      {
+         document.calculator.principal.focus();
+         return;
+      }
+      else if (document.getElementById("apr").value == "")
+      {
+         document.calculator.apr.focus();
+         return;
+      }
+      else if (document.getElementById("years").value == "")
+      {
+         document.calculator.years.focus();
+         return;
+      }
+
+      //calculate futre value
+      var rate = annualRate / 12 / 100;
+      var payments   = years * 12;
+      // return (principal * (Math.pow((1 + periodRate), periodsPerYear)));  
+      return (principal * (rate * (Math.pow((1 + rate), payments)) / (Math.pow((1 + rate), payments)- 1)));  
+   }
+
+   //set focus to top input
+   function setFocus()
+   {
+      document.calculator.principal.focus();
+   }
+   
+   //AngularJS controller for calc
+   function calcCtrl($scope)
+   {
+
+      $scope.fValue = "$ 0.00";
+
+      //calculate future value 
+      $scope.processIt = function ()
+      {
+         var principal = parseFloat(document.calculator.principal.value);
+         var apr       = parseFloat(document.calculator.apr.value);
+         var years     = parseFloat(document.calculator.years.value);
+         
+         //convert it
+         var futureValue = computeFutureValue(principal,apr,years);
+
+         //format for $$$
+         futureValue = futureValue.toFixed(2);
+      
+         //attatch to scope
+         $scope.fValue = "$ " + futureValue;
+      };
+
+      //reset the fValue to 0
+      $scope.resetValue = function()
+      {
+         $scope.fValue = "$ 0.00";
+      }
+   }
+   </script>
+      
+   </head>
+  
+   <body onload="setFocus()">
+      <div class="calc" data-ng-controller="calcCtrl">
+         <div class="title">
+            <h2>Mortgage Calculator</h2>
+         </div>
+         <form name="calculator">
+            <div class="container">
+               <input type= 'text' id='principal' name='principal' placeholder="Principal"/><br>
+            </div>
+
+            <div class="container">
+               <input type= 'text' id='apr' name= 'apr' placeholder="Annual Rate"/><br>
+            </div>
+
+            <div class="container">
+               <input type= 'text' id='years' name= 'years' placeholder="Number of Years"/><br>
+            </div>
+
+            <div class="container">
+               <button class="btn" id="submit"  type='button' data-ng-click="processIt()">Compute Payment</button>
+               <input type="reset" id="reset" class="btn" data-ng-click="resetValue()" onclick="setFocus()">
+            </div>
+               <div id="result">
+                  {{fValue}}
+               </div>
+         </form>
+
+      </div>       
+   </body>
+   </html>
+
