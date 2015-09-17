@@ -92,17 +92,60 @@ getInfo = function()
 };
 
 
-loadPiano = function()
-  {
-      // console.log($scope.currentPiano.year);
-      var cp = localCache().get("currentP", "object");
-      //console.log(cp);
-      $scope.currentPiano = cp;
-      console.log($scope.currentPiano);
-       // $scope.currentPiano = localCache().get("currentP", "object");
-      // console.log($scope.currentPiano.year);
-      // if (cp.type="Upright" || cp.type="upright")
-      // {
-      //   $scope.pic = "assets/Yamaha-upright-piano.jpg";
-      // }
-  };
+function dbController($scope)
+{
+  setTimeout(function (){
+    //This is here to make it wait...
+  }, 500);
+  // $scope.currentPiano = localCache().get("currentP", "object");
+  $scope.flights = localCache().get("flights", "object");
+  console.log($scope.pianos);
+  $scope.test = "hey!";
+  $scope.numFlights = $scope.flights.length;
+  // $scope.pic = "assets/Yamaha-upright-piano.jpg"
+
+  // $scope.openPage = function(selectedPiano)
+  // {
+  //   console.log(selectedPiano.year);
+  //   $scope.currentPiano = selectedPiano;
+  //   // var result = $.grep($scope.pianos, function(e){ return e.byui_piano_id == selectedID; });
+  //   window.open("pianoInfo.html","_self");
+  //   console.log($scope.currentPiano.year);
+  //   localCache().save("currentP", selectedPiano);
+  // };
+
+  // $scope.deletePiano = function()
+  // {
+  //  var confirmed = confirm("Are you sure you want to delete this piano?");
+  //  var id = $scope.currentPiano.byui_piano_id;
+  //  console.log(id);
+
+  //  if (confirmed) 
+  //   {
+  //     $.ajax({
+  //         type: "post",
+  //         url: "http://localhost:8080/DBPianistic2/DBServlet",
+  //         data: "cmd=delete&id=" + id,
+  //         success: function (data) {
+  //             console.log(data);
+  //             window.open("pianos.html","_self");
+  //         }
+  //     });
+  //   };
+  // };
+
+  // loadPiano = function()
+  // {
+  //     // console.log($scope.currentPiano.year);
+  //     var cp = localCache().get("currentP", "object");
+  //     //console.log(cp);
+  //     $scope.currentPiano = cp;
+  //     console.log($scope.currentPiano);
+  //      // $scope.currentPiano = localCache().get("currentP", "object");
+  //     // console.log($scope.currentPiano.year);
+  //     // if (cp.type="Upright" || cp.type="upright")
+  //     // {
+  //     //   $scope.pic = "assets/Yamaha-upright-piano.jpg";
+  //     // }
+  // };
+};

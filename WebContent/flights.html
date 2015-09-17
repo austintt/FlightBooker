@@ -27,9 +27,9 @@
 
     <!--JS -->
     <script src= "framworks/angular.min.js"></script>
-    <!--<script src= "js/controller.js"></script>
+    <script src= "js/controller.js"></script>
     <script src ="js/app.js"></script>
-    <script src ="js/services.js"></script> -->
+    <script src ="js/services.js"></script> 
     <script src ="js/dataGetter.js"></script>
 
     <!-- Favicon -->
@@ -129,7 +129,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
+                <div class="row" ng-repeat="flight in flights | filter:search | orderBy:'flight_num'">
                     <div class="col-lg-12">
                        <div class="panel panel-info">
                             <div class="panel-heading">
@@ -137,9 +137,9 @@
                             </div>
                             <div class="panel-body">
                                 <div class="col-lg-10">
-                                    <pre>From = {{passenger.From}} </pre>
-                                    <pre>To = {{passenger.To}}</pre>
-                                    <pre>Depart = {{passenger.Depart}}</pre>
+                                    <pre>From = {{flight.origin}} </pre>
+                                    <pre>To = {{flight.destination}}</pre>
+                                    <pre>Depart = {{flight.departure}}</pre>
                                 </div>
                                 <div class="col-lg-2">
                                     <button class="btn btn-large btn-block btn-primary" type="button" data-toggle="modal" data-target="#paymentModal">Select Flight</button>
