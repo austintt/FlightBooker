@@ -77,19 +77,31 @@ getInfo = function()
       }
 		
 	});
-
-
-
-	// $.ajax({
- //          type: "post",
- //          url: "http://localhost:8080/DBPianistic2/DBServlet",
- //          data: "cmd=delete&id=" + id,
- //          success: function (data) {
- //              console.log(data);
- //              window.open("pianos.html","_self");
- //          }
- //      });
 };
+
+function postPurchaseData (argument) {
+  var newData = {"command" : "makePurchase"};
+  console.log("We are in getINFO!");
+  var formData = {command:"getAllFlights"}; //Array 
+ 
+  $.ajax({
+      url : "http://localhost:8080/FlightBooker/FlightAPI",
+      type: "POST",
+      data : formData,
+      success: function(data, textStatus, jqXHR)
+      {
+          console.log("success!!!!!");
+          localCache().save("flights", data);
+          localCache().get("flights", "object");
+          console.log(localCache().get("flights", "object"));
+      },
+      error: function (jqXHR, textStatus, errorThrown)
+      {
+          console.log("booooo");
+      }
+    
+  });
+}
 
 
 function dbController($scope)

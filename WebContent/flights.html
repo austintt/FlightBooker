@@ -83,7 +83,7 @@
                             <div class="form-group input-group sideNavInput">
 
                                     <input type="text" class="form-control"
-                                    >
+                                    ng-model="search.origin">
 
                                     <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                             </div>
@@ -93,7 +93,7 @@
                             <div class="form-group input-group sideNavInput">
 
                                     <input  type="text" class="form-control"
-                                    >
+                                    ng-model="search.destination">
 
                                     <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                             </div>
@@ -129,7 +129,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row" ng-repeat="flight in flights | orderBy:'flight_num'">
+                <div class="row" ng-repeat="flight in flights | filter:search | orderBy:'flight_num'">
                     <div class="col-lg-12">
                        <div class="panel panel-info">
                             <div class="panel-heading">
@@ -167,23 +167,20 @@
                         </div>
 
                         <div class="modal-body">
-                            <form role="form">
+                            <form role="form" action="http://localhost:8080/FlightBooker/FlightAPI" method="POST">
+                                    <input type="hidden" name="command" value="purchase">
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required autofocus>
+                                    <input type="text" class="form-control" id="firstName" name="first_name" placeholder="First Name" required autofocus>
+                                    <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Last Name" required>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-control" id="email" name="email" placeholder="Email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" id="Address" name="Address" placeholder="Address" required>
+                                    <input type="text" class="form-control" id="Address" name="address" placeholder="Address" required>
                                 </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="Age" name="Age" placeholder="Age" required>
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" id="Cell" name="Cell" placeholder="Phone Number" required>
-                                </div>
-                            </form>
+                
+                        
                         </div>
 
 
@@ -192,18 +189,18 @@
                         </div>
 
                         <div class="modal-body">
-                            <form class="form-horizontal" role="form">
+                    
                                 <fieldset>
                                   <div class="form-group">
                                     <label class="col-sm-3 control-label" for="card-holder-name">Name on Card</label>
                                     <div class="col-sm-9">
-                                      <input type="text" class="form-control" name="card-holder-name" id="card-holder-name" placeholder="Card Holder's Name">
+                                      <input type="text" class="form-control" name="cc_name" id="card-holder-name" placeholder="Card Holder's Name">
                                     </div>
                                   </div>
                                   <div class="form-group">
                                     <label class="col-sm-3 control-label" for="card-number">Card Number</label>
                                     <div class="col-sm-9">
-                                      <input type="text" class="form-control" name="card-number" id="card-number" placeholder="Debit/Credit Card Number">
+                                      <input type="text" class="form-control" name="cc_number" id="card-number" placeholder="Debit/Credit Card Number">
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -211,7 +208,7 @@
                                     <div class="col-sm-9">
                                       <div class="row">
                                         <div class="col-xs-3">
-                                          <select class="form-control col-sm-2" name="expiry-month" id="expiry-month">
+                                          <select class="form-control col-sm-2" name="cc_month" id="expiry-month">
                                             <option>Month</option>
                                             <option value="01">Jan (01)</option>
                                             <option value="02">Feb (02)</option>
@@ -228,7 +225,7 @@
                                           </select>
                                         </div>
                                         <div class="col-xs-3">
-                                          <select class="form-control" name="expiry-year">
+                                          <select class="form-control" name="cc_year">
                                             <option value="15">2015</option>
                                             <option value="16">2016</option>
                                             <option value="17">2017</option>
@@ -251,7 +248,7 @@
                                   </div>
                                   <div class="form-group">
                                     <div class="col-sm-offset-3 col-sm-9">
-                                      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#checkIn2Modal">Pay Now</button>
+                                      <input type="submit" class="btn btn-success">Pay Now</button>
                                     </div>
                                   </div>
                                 </fieldset>

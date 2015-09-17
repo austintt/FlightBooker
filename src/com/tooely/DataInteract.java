@@ -77,4 +77,54 @@ public class DataInteract {
 //	public static void main(String[] args) {
 //		new DataInteract().flightDumpQuery();
 //	} 
+
+	public void insertOrder(String first_name, String last_name, String email,
+			String address, String cc_name, int cc_number, String cc_month,
+			String cc_year, String cvv) {
+		
+		Connection c = null;
+		Statement stmt = null;
+		try 
+		{
+			Class.forName("org.sqlite.JDBC");
+			c = DriverManager.getConnection(dataSource);
+			c.setAutoCommit(false);
+			System.out.println("Opened database successfully");
+			stmt = c.createStatement();
+			String sql = "INSERT INTO customers (first_name,last_name) VALUES ("
+					+ first_name + "," 
+					+ last_name +");";
+			System.out.println("About to execute statement: " + sql);
+
+			stmt.executeUpdate(sql);
+			stmt.close();
+			c.commit();
+			
+//				sql = "INSERT INTO "
+//					   + "orders "
+//					   + "( cc_name"
+//					   + ", cc_number"
+//					   + ", cc_month"
+//					   + "cc_code"
+//					   + ", cc_year)"
+//					   + "VALUES (" + cc_name + "," 
+//					                + cc_number + "," 
+//					                + cc_month + ","
+//					                + cvv + ","
+//					                + cc_year + ");";
+//			System.out.println("About to execute statement: " + sql);
+//
+//			stmt.executeUpdate(sql);
+//			stmt.close();
+//			c.commit();
+			c.close();
+			System.out.println("UPDated!");
+		}
+		catch(Exception e)
+		{
+			System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+			System.exit(0);
+		}
+		System.out.println("Records created successfully");
+	}
 }
