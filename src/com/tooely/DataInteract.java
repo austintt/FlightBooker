@@ -41,7 +41,7 @@ public class DataInteract {
 				String arrival_time		= rs.getString("arrival_time");
 				String origin			= rs.getString("origin");
 				String destination		= rs.getString("destination");
-				int seatsTotal			= rs.getInt("seats_total");
+				int seats_total			= rs.getInt("seats_total");
 //				int numCustomers;
 //				String remarks;
 
@@ -52,11 +52,11 @@ public class DataInteract {
 				System.out.println( "arrive = " + arrival_time );
 				System.out.println( "origin = " + origin );
 				System.out.println( "destination = " + destination );
-				System.out.println( "seats = " + seatsTotal );
+				System.out.println( "seats = " + seats_total );
 				      
 				System.out.println();
 				
-				flightData.add(new Flight(id, flight_num, flight_date, departure_time,arrival_time,  origin, destination, seatsTotal));
+				flightData.add(new Flight(id, flight_num, flight_date, departure_time,arrival_time,  origin, destination, seats_total));
 
 			
 			}

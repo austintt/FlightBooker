@@ -8,14 +8,14 @@ public class Flight {
 	String arrival_time;
 	String origin;
 	String destination;
-	int seatsTotal;
+	int seats_total;
 //	int numCustomers;
 //	String remarks;
 	
 	
 	public Flight(int id, int flight_num, String flight_date,
 			String departure_time, String arrival_time, String origin,
-			String destination, int seatsTotal) {
+			String destination, int seats_total) {
 		super();
 		this.id = id;
 		this.flight_num = flight_num;
@@ -24,7 +24,7 @@ public class Flight {
 		this.arrival_time = arrival_time;
 		this.origin = origin;
 		this.destination = destination;
-		this.seatsTotal = seatsTotal;
+		this.seats_total = seats_total;
 //		this.numCustomers = numCustomers;
 //		this.remarks = remarks;
 	}

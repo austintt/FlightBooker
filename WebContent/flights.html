@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html ng-app>
 
 <head>
 
@@ -26,10 +26,10 @@
     <link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>
 
     <!--JS -->
-    <script src= "framworks/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
     <script src= "js/controller.js"></script>
     <script src ="js/app.js"></script>
-    <script src ="js/services.js"></script> 
+    <!--<script src ="js/services.js"></script> -->
     <script src ="js/dataGetter.js"></script>
 
     <!-- Favicon -->
@@ -45,7 +45,7 @@
 
 </head>
 
-<body ng-app="airwaysApp" onload="getInfo()">
+<body onload="getInfo()" ng-controller="dbController">
 
     <div id="wrapper">
 
@@ -72,7 +72,7 @@
                 </li>
             </ul>
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div ng-controller="FormController" class="collapse navbar-collapse navbar-ex1-collapse">
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <form novalidate>
                     <ul class="nav navbar-nav side-nav">
                         <li class="active">
@@ -82,8 +82,8 @@
                             <a class="fa">From: </a>
                             <div class="form-group input-group sideNavInput">
 
-                                    <input ng-model="userFrom" type="text" class="form-control"
-                                    ng-repeat="flight in flightList | filter: userFrom">
+                                    <input type="text" class="form-control"
+                                    >
 
                                     <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                             </div>
@@ -92,8 +92,8 @@
                             <a class="fa">To: </a>
                             <div class="form-group input-group sideNavInput">
 
-                                    <input ng-model="userTo" type="text" class="form-control"
-                                    ng-repeat="flight in flightList | filter: userTo">
+                                    <input  type="text" class="form-control"
+                                    >
 
                                     <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                             </div>
@@ -102,14 +102,14 @@
                             <a class="fa fa-table">Depart Date: </a>
                             <div class="form-group input-group sideNavInput">
 
-                                    <input ng-model="userDepart" type="text" class="form-control" placeholder="MM/DD/YYYY"
-                                    ng-repeat="flight in flightList | filter: userDepart">
+                                    <input type="text" class="form-control" placeholder="MM/DD/YYYY"
+                                    >
 
                                     <span class="input-group-btn"><button class="btn btn-default" type="button"><i class="fa fa-search"></i></button></span>
                             </div>
                         </li>
                         <li>
-                            <a class="fa fa-fw"><button ng-click="reset()" type="button" class="btn btn-primary">Submit</button></a>
+                            <a class="fa fa-fw"><button  type="button" class="btn btn-primary">Submit</button></a>
                         </li>
                     </ul>
                 </form>
@@ -124,22 +124,26 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Flights</h1>
+                        <h1 class="page-header">Flights {{scope.test}}</h1>
                     </div>
                 </div>
                 <!-- /.row -->
 
-                <div class="row" ng-repeat="flight in flights | filter:search | orderBy:'flight_num'">
+                <div class="row" ng-repeat="flight in flights | orderBy:'flight_num'">
                     <div class="col-lg-12">
                        <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Flight #</h3>
+                                <h3 class="panel-title">Flight #{{flight.flight_num}}</h3>
                             </div>
                             <div class="panel-body">
-                                <div class="col-lg-10">
-                                    <pre>From = {{flight.origin}} </pre>
-                                    <pre>To = {{flight.destination}}</pre>
-                                    <pre>Depart = {{flight.departure}}</pre>
+                                <div class="col-lg-5">
+                                    <pre>From: {{flight.origin}} </pre>
+                                    <pre>To: {{flight.destination}}</pre>
+                                    <pre>Seats: {{flight.seats_total}}</pre>
+                                </div>
+                                <div class="col-lg-5">
+                                    <pre>Departure: {{flight.departure_time}} </pre>
+                                    <pre>Arrival: {{flight.arrival_time}}</pre>
                                 </div>
                                 <div class="col-lg-2">
                                     <button class="btn btn-large btn-block btn-primary" type="button" data-toggle="modal" data-target="#paymentModal">Select Flight</button>
