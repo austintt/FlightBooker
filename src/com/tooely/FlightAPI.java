@@ -43,6 +43,7 @@ public class FlightAPI extends HttpServlet {
 	
 		//get cmd parameter
 		String cmd = request.getParameter("command");
+		System.out.println("We got a post request!");
 	
 
 		//flight dump
