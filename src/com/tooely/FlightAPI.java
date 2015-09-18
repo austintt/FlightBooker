@@ -37,14 +37,13 @@ public class FlightAPI extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("application/json");
-		
 		PrintWriter out =  response.getWriter();
 		String req = request.getParameter("type");
 	
 		//get cmd parameter
 		String cmd = request.getParameter("command");
 		System.out.println("We got a post request!");
-	
+		System.out.println(System.getProperty("user.dir"));
 
 		//flight dump
 		if (cmd.equals("getAllFlights")) 

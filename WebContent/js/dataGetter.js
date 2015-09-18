@@ -111,8 +111,8 @@ function dbController($scope)
   }, 500);
   // $scope.currentPiano = localCache().get("currentP", "object");
   $scope.flights = localCache().get("flights", "object");
-  console.log($scope.pianos);
+  // console.log($scope.pianos);
   $scope.test = "hey!";
-  $scope.numFlights = $scope.flights.length;
+  // $scope.numFlights = $scope.flights.length;
 
 };

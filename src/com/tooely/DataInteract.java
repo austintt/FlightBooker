@@ -8,7 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataInteract {
+//	String dataSource = "jdbc:sqlite::resource:https://dl.dropboxusercontent.com/u/3467544/db.db";
+//	String dataSource = "jdbc:sqlite:db.db";
 	String dataSource = "jdbc:sqlite:/Users/Austin/Documents/workspace/FlightBooker/resource/db.db";
+//	String dataSource = "jdbc:sqlite:/var/lib/tomcat7/webapps/FlightBooker/db.db";
 	
 	public DataInteract()
 	{
@@ -24,6 +27,7 @@ public class DataInteract {
 		try 
 		{
 			Class.forName("org.sqlite.JDBC");
+			
 			c = DriverManager.getConnection(dataSource);
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
@@ -91,9 +95,12 @@ public class DataInteract {
 			c.setAutoCommit(false);
 			System.out.println("Opened database successfully");
 			stmt = c.createStatement();
-			String sql = "INSERT INTO customers (first_name,last_name) VALUES ("
-					+ first_name + "," 
-					+ last_name +");";
+			String sql = "INSERT INTO customers (id,first_name,last_name,address,email) VALUES ("+ 9 +","
+												+ first_name + "," 
+												+ last_name + ","
+												+ address + ","
+												+ email + ","
+												+ ");";
 			System.out.println("About to execute statement: " + sql);
 
 			stmt.executeUpdate(sql);
@@ -128,3 +135,4 @@ public class DataInteract {
 		System.out.println("Records created successfully");
 	}
 }
+
